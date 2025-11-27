@@ -6,7 +6,7 @@ import { Button } from './components/Button';
 
 // Default prompt based on user request: 
 // "Pumpkin button with 'Start' written in vines"
-const DEFAULT_PROMPT = "Pixel art button shaped like a wide orange pumpkin. The text 'СТАРТ' is written across the front of the pumpkin using twisted green vines and leaves. The vines form the letters legibly. 16-bit retro game style, cute aesthetic, slight shading.";
+const DEFAULT_PROMPT = "Pixel art button shaped like a wide orange pumpkin. The text 'START' is written across the front of the pumpkin using twisted green vines and leaves. The vines form the letters legibly. 16-bit retro game style, cute aesthetic, slight shading, white background.";
 
 export default function App() {
   const [prompt, setPrompt] = useState<string>(DEFAULT_PROMPT);

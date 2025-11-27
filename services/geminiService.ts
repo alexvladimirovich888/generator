@@ -1,13 +1,27 @@
 import { GoogleGenAI } from "@google/genai";
 
-// Initialize the client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+let aiClient: GoogleGenAI | null = null;
+
+const getAiClient = () => {
+  if (aiClient) return aiClient;
+
+  // Ensure apiKey is available; relying on the environment to provide process.env.API_KEY
+  const apiKey = process.env.API_KEY;
+  if (!apiKey) {
+    throw new Error("API Key is missing. Ensure process.env.API_KEY is properly set in your environment.");
+  }
+
+  aiClient = new GoogleGenAI({ apiKey });
+  return aiClient;
+};
 
 /**
  * Generates a pixel art asset based on the provided prompt using gemini-2.5-flash-image.
  */
 export const generatePixelAsset = async (prompt: string): Promise<string> => {
   try {
+    const ai = getAiClient();
+
     // We append specific style instructions to ensure the pixel art look
     const enhancedPrompt = `${prompt}. 
     Style: High-quality 16-bit or 32-bit pixel art game asset. 
@@ -24,8 +38,6 @@ export const generatePixelAsset = async (prompt: string): Promise<string> => {
           },
         ],
       },
-      // Note: responseMimeType and responseSchema are NOT supported for image models.
-      // We rely on the default output which includes the image blob.
     });
 
     // Iterate through parts to find the image
