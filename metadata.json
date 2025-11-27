@@ -1,0 +1,5 @@
+{
+  "name": "Pumpkin Pixel Asset Generator",
+  "description": "Generates custom pixel-art game assets using Gemini 2.5 Flash Image. Default preset creates a pumpkin button with vine text.",
+  "requestFramePermissions": []
+}
